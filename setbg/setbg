@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# interval between changing wallpapers in seconds
+INTERVAL=300
+
+[ -f $1 ] && cp $1 ~/.config/wall.png
+[ -d $1 ] && cp "$1$(ls $1 | shuf -n 1)" ~/.config/wall.png
+
+xwallpaper --zoom ~/.config/wall.png
+
+if [[ $2 = "carousel" ]]; then
+    sleep $INTERVAL
+    $0 $1 $2
+fi
