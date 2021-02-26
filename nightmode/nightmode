@@ -1,0 +1,11 @@
+#!/bin/bash
+
+TEMPERATURE="2700k"
+
+if [ $1 == "on" ]; then
+    redshift -O $TEMPERATURE
+fi
+
+if [ $1 == "off" ]; then
+    redshift -x
+fi
