@@ -1,14 +1,27 @@
 #!/bin/bash
 
 # interval between changing wallpapers in seconds
-INTERVAL=300
+INTERVAL=2
+items=''
 
-[ -f $1 ] && cp $1 ~/.config/wall.png
-[ -d $1 ] && cp "$1$(ls $1 | shuf -n 1)" ~/.config/wall.png
+for arg in $@
+do
+    if [[ -d $arg ]]; then
+        for item in $(ls $arg)
+        do
+            items+="$arg$item "
+        done
+    elif [[ -f $arg ]]; then
+        items+=" $arg "
+    fi
+done
+
+selection="$(shuf -n 1 -e $items)"
+cp $selection ~/.config/wall.png
 
 xwallpaper --zoom ~/.config/wall.png
 
-if [[ $2 = "carousel" ]]; then
+if [[ ${@: -1} = "carousel" ]]; then
     sleep $INTERVAL
-    $0 $1 $2
+    $0 $@
 fi

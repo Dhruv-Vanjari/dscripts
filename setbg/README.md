@@ -38,6 +38,15 @@ But you can change it by changing the value of `INTERVAL` variable in `/.scripts
 
 Add any of these three methods to set wallpapers in your `~/.xinitrc` file to automatically set wallpapers
 
+Multiple files and directories
+------------------------------
+You can also supply multiple files and directories to this script and the script will set a random wallpaper among all the ones supplied. If you want carousel make sure that its the last argument passed to the script.
+
+Here is an example
+```
+setbg 01.jpg 02.jpg wallpapers/ carousel
+```
+
 Installation
 ------------
 Change directory to `setbg` and run the installation script `install.sh` provided with setbg
